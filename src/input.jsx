@@ -1,6 +1,7 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
 import shallowCompare from 'react-addons-shallow-compare';
 import classnames from 'classnames';
+import TextField from 'material-ui/TextField';
 
 import filterInputAttributes from './filter-input-attributes';
 
@@ -119,9 +120,22 @@ class Input extends React.Component {
         this.props.className
       );
 
-    return <input className={classes}
-      ref={i => this.input = i}
+    // return <input className={classes}
+    //   ref={i => this.input = i}
+    //   type='text'
+    //   {...attributes}
+    //   value={this.props.value}
+    //   style={this.props.style}
+    //   onKeyDown={this.onInputKeyDown}
+    //   onChange={this.onChange}
+    //   onKeyPress={this.onKeyPress}
+    //   onFocus={this.onFocus}
+    //   onBlur={this.onBlur} />;
+    <TextField className={classes}
+      id="geosuggest-material-ui"
+      ref='input'
       type='text'
+      autoComplete='off'
       {...attributes}
       value={this.props.value}
       style={this.props.style}
