@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 import classnames from 'classnames';
+import { ListItem } from 'material-ui/List'
+
+import styles from './styles.css'
 
 /**
  * A single Geosuggest item in the list
  * @param {Object} props The component's props
  * @return {JSX} The icon component.
  */
-export default class SuggestItem extends React.Component {
+export default class SuggestItem extends Component {
   /**
    * Makes a text bold
    * @param {String} element The element to wrap
@@ -63,16 +66,16 @@ export default class SuggestItem extends React.Component {
    * Scrolling current item to the center of the list if item needs scrolling.
    * Item is scrolled to the center of the list.
    */
-  scrollIfNeeded() {
-    const el = this.ref,
-      parent = el.parentElement,
-      overTop = el.offsetTop - parent.offsetTop < parent.scrollTop,
-      overBottom = el.offsetTop - parent.offsetTop + el.clientHeight >
-        parent.scrollTop + parent.clientHeight;
+  scrollIfNeeded = () => {
+    
+    return
+    const el = this.ref
+    const parent = el.parentElement
+    const overTop = el.offsetTop - parent.offsetTop < parent.scrollTop
+    const overBottom = el.offsetTop - parent.offsetTop + el.clientHeight > parent.scrollTop + parent.clientHeight
 
     if (overTop || overBottom) {
-      parent.scrollTop = el.offsetTop - parent.offsetTop -
-        parent.clientHeight / 2 + el.clientHeight / 2;
+      parent.scrollTop = el.offsetTop - parent.offsetTop - parent.clientHeight / 2 + el.clientHeight / 2;
     }
   }
 
@@ -92,10 +95,9 @@ export default class SuggestItem extends React.Component {
   render() {
     const {suggest} = this.props,
       classes = classnames(
-        'geosuggest__item',
+        styles.SuggestItem,
         this.props.className,
-        this.props.suggestItemClassName,
-        {'geosuggest__item--active': this.props.isActive},
+        {[styles.SuggestItemActive]: this.props.isActive},
         {[this.props.activeClassname]: this.props.activeClassname ?
           this.props.isActive : null}
       );
@@ -107,14 +109,14 @@ export default class SuggestItem extends React.Component {
       content = this.formatMatchedText(this.props.userInput, suggest);
     }
 
-    return <li className={classes}
-      ref={li => this.ref = li}
+    return <ListItem className={classes}
+      ref={item => this.ref = item}
       style={this.props.style}
       onMouseDown={this.props.onMouseDown}
       onMouseOut={this.props.onMouseOut}
       onClick={this.onClick}>
       {content}
-    </li>;
+    </ListItem>;
   }
 }
 

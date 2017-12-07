@@ -1,5 +1,10 @@
 # React Geosuggest [![Build Status](https://travis-ci.org/ubilabs/react-geosuggest.svg?branch=master)](https://travis-ci.org/ubilabs/react-geosuggest)
 
+Adjust to work with react v16.1, material-ui v1 (beta), redux, css modules and redux-form
+
+TODO: work out details to make this an proper updated package
+
+
 A [React](http://facebook.github.io/react/) autosuggest for the Google Maps Places API. You can also define your own suggests as defaults. Works with [Preact](https://github.com/developit/preact), too.
 
 

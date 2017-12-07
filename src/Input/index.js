@@ -1,16 +1,18 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
+import React, {Component} from 'react'; // eslint-disable-line no-unused-vars
 import shallowCompare from 'react-addons-shallow-compare';
-import classnames from 'classnames';
+
 import TextField from 'material-ui/TextField';
 
-import filterInputAttributes from './filter-input-attributes';
+import classes from './styles.css'
+
+import filterInputAttributes from '../settings/filter-input-attributes';
 
 /**
  * The input field
  * @param {Object} props The component's props
  * @return {JSX} The icon component.
  */
-class Input extends React.Component {
+class Input extends Component {
   /**
    * Whether or not the component should update
    * @param {Object} nextProps The new properties
@@ -114,31 +116,16 @@ class Input extends React.Component {
    * @return {Function} The React element to render
    */
   render() {
-    const attributes = filterInputAttributes(this.props),
-      classes = classnames(
-        'geosuggest__input',
-        this.props.className
-      );
-
-    // return <input className={classes}
-    //   ref={i => this.input = i}
-    //   type='text'
-    //   {...attributes}
-    //   value={this.props.value}
-    //   style={this.props.style}
-    //   onKeyDown={this.onInputKeyDown}
-    //   onChange={this.onChange}
-    //   onKeyPress={this.onKeyPress}
-    //   onFocus={this.onFocus}
-    //   onBlur={this.onBlur} />;
-    <TextField className={classes}
+    const attributes = filterInputAttributes(this.props)
+  
+    return <TextField className={classes.Input}
       id="geosuggest-material-ui"
-      ref='input'
+      inputRef={(input) => { this.input = input }}
       type='text'
+      label='Address'
       autoComplete='off'
       {...attributes}
       value={this.props.value}
-      style={this.props.style}
       onKeyDown={this.onInputKeyDown}
       onChange={this.onChange}
       onKeyPress={this.onKeyPress}
